@@ -1,0 +1,23 @@
+[package]
+name = "simpleedit-spell"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.90"
+publish = false
+description = "The Spelling plugin of SimpleEdit"
+license = "MIT"
+
+[[bin]]
+name = "spell"
+path = "src/main.rs"
+
+[dependencies]
+simpleedit-plugin = { git = "https://github.com/simple-edit-app/plugin-sdk", tag = "v0.3.0" }
+spellbook = "0.4"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+strip = true
+lto = true

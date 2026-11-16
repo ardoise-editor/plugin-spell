@@ -1,0 +1,15 @@
+{
+  "id": "simpleedit.spell",
+  "name": { "en": "Spelling", "fr": "Orthographe" },
+  "version": "1.0.0",
+  "api": 1,
+  "description": {
+    "en": "Misspelled words underlined, in prose and in the comments of programs, with suggestions (Hunspell dictionaries)",
+    "fr": "Les mots mal orthographiés soulignés, dans les textes et les commentaires des programmes, avec des suggestions (dictionnaires Hunspell)"
+  },
+  "author": "SimpleEdit",
+  "repository": "simple-edit-app/plugin-spell",
+  "license": "MIT",
+  "command": ["bin/spell"],
+  "contributes": { "speller": {} }
+}
