@@ -3,6 +3,23 @@
 version = 4
 
 [[package]]
+name = "ardoise-plugin"
+version = "0.12.0"
+dependencies = [
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "ardoise-spell"
+version = "1.0.1"
+dependencies = [
+ "ardoise-plugin",
+ "spellbook",
+ "tempfile",
+]
+
+[[package]]
 name = "bitflags"
 version = "2.13.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -161,24 +178,6 @@ dependencies = [
  "serde",
  "serde_core",
  "zmij",
-]
-
-[[package]]
-name = "simpleedit-plugin"
-version = "0.3.0"
-source = "git+https://github.com/simple-edit-app/plugin-sdk?tag=v0.3.0#628e7fa02fc294c6fcbc4a6848a19a2628846354"
-dependencies = [
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "simpleedit-spell"
-version = "1.0.1"
-dependencies = [
- "simpleedit-plugin",
- "spellbook",
- "tempfile",
 ]
 
 [[package]]

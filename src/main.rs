@@ -8,9 +8,9 @@ mod spell;
 use std::collections::HashMap;
 use std::path::PathBuf;
 
-use simpleedit_plugin::protocol::InitializeParams;
-use simpleedit_plugin::spell::{CheckParams, CheckResult, Language, LearnParams, SuggestParams};
-use simpleedit_plugin::{run, Host, Plugin};
+use ardoise_plugin::protocol::InitializeParams;
+use ardoise_plugin::spell::{CheckParams, CheckResult, Language, LearnParams, SuggestParams};
+use ardoise_plugin::{run, Host, Plugin};
 
 /// The words the user added, one per line, in the plugin's data folder.
 const PERSONAL: &str = "dictionary.txt";

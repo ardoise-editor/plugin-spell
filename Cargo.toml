@@ -1,10 +1,10 @@
 [package]
-name = "simpleedit-spell"
+name = "ardoise-spell"
 version = "1.0.1"
 edition = "2021"
 rust-version = "1.90"
 publish = false
-description = "The Spelling plugin of SimpleEdit"
+description = "The Spelling plugin of Ardoise"
 license = "MIT"
 
 [[bin]]
@@ -12,7 +12,7 @@ name = "spell"
 path = "src/main.rs"
 
 [dependencies]
-simpleedit-plugin = { git = "https://github.com/simple-edit-app/plugin-sdk", tag = "v0.3.0" }
+ardoise-plugin = { path = "../plugin-sdk" }
 spellbook = "0.4"
 
 [dev-dependencies]
