@@ -1,4 +1,4 @@
-//! The Spelling plugin of SimpleEdit: the words the Hunspell dictionaries
+//! The Spelling plugin of Ardoise: the words the Hunspell dictionaries
 //! of the machine do not know, in prose and in the comments of programs,
 //! with suggestions and a personal dictionary.
 

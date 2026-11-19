@@ -16,11 +16,18 @@ pub struct Language {
 
 /// Where Hunspell dictionaries are kept.
 pub fn search_dirs(own: &Path) -> Vec<PathBuf> {
+    search_dirs_of(own, std::env::var_os("HOME").map(PathBuf::from))
+}
+
+fn search_dirs_of(own: &Path, home: Option<PathBuf>) -> Vec<PathBuf> {
     let mut dirs: Vec<PathBuf> = vec![own.join("dictionaries")];
-    if let Some(home) = std::env::var_os("HOME").map(PathBuf::from) {
-        // Where the editor kept them before the plugin.
-        dirs.push(home.join(".local/share/simpleedit/dictionaries"));
-        dirs.push(home.join("Library/Application Support/simpleedit/dictionaries"));
+    if let Some(home) = home {
+        // Where the editor kept them before the plugin (and under the name it
+        // had before it was renamed: Ardoise was SimpleEdit).
+        for app in ["ardoise", "simpleedit"] {
+            dirs.push(home.join(format!(".local/share/{app}/dictionaries")));
+            dirs.push(home.join(format!("Library/Application Support/{app}/dictionaries")));
+        }
         dirs.push(home.join(".local/share/hunspell"));
         dirs.push(home.join("Library/Spelling"));
     }
@@ -283,6 +290,27 @@ pub fn misspelled(speller: &Speller, text: &str, ext: &str) -> Vec<(usize, usize
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn the_dictionaries_the_editor_kept_are_found_under_its_two_names() {
+        let own = Path::new("/data/plugin");
+        let dirs: Vec<String> = search_dirs_of(own, Some(PathBuf::from("/home/u")))
+            .into_iter()
+            .map(|d| d.to_string_lossy().into_owned())
+            .collect();
+        for expected in [
+            "/data/plugin/dictionaries",
+            "/home/u/.local/share/ardoise/dictionaries",
+            "/home/u/.local/share/simpleedit/dictionaries",
+            "/home/u/Library/Application Support/ardoise/dictionaries",
+            "/home/u/Library/Application Support/simpleedit/dictionaries",
+        ] {
+            assert!(dirs.iter().any(|d| d == expected), "{expected}");
+        }
+        // The new name comes first: what the editor moved is the one in use.
+        let at = |name: &str| dirs.iter().position(|d| d.contains(name)).unwrap();
+        assert!(at("share/ardoise") < at("share/simpleedit"));
+    }
 
     fn speller() -> Speller {
         Speller::from_text(
