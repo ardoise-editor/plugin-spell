@@ -1,7 +1,7 @@
 {
   "id": "ardoise.spell",
   "name": { "en": "Spelling", "fr": "Orthographe" },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "api": 1,
   "description": {
     "en": "Misspelled words underlined, in prose and in the comments of programs, with suggestions (Hunspell dictionaries)",
